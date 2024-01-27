@@ -1,7 +1,5 @@
 package com.impact.monster.domain.user.service;
 
-import com.impact.monster.domain.user.User;
-import com.impact.monster.domain.user.presentation.dto.response.user.detail.UserDetailResponseDto;
 import com.impact.monster.domain.user.repository.UserRepository;
 import com.impact.monster.global.exception.ErrorCodes.ErrorCode;
 import com.impact.monster.global.exception.GlobalException;
