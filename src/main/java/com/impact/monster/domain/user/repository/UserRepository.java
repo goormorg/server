@@ -23,4 +23,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "where u.email = :email")
      Object[] findDetailByEmail(String email);
 
+    User findByEmail(String email);
 }

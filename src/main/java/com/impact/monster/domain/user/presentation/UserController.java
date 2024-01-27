@@ -1,12 +1,11 @@
 package com.impact.monster.domain.user.presentation;
 
 import com.impact.monster.domain.user.presentation.dto.request.bmr.BmrRequestDto;
+import com.impact.monster.domain.user.presentation.dto.request.info.HeightChangeRequestDto;
+import com.impact.monster.domain.user.presentation.dto.request.info.WeightChangeRequestDto;
 import com.impact.monster.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -28,5 +27,15 @@ public class UserController {
                         @RequestParam("gender") String gender)  {
         float result = userService.getUserBmrInfo(weight, height, age, gender);
         return result;
+    }
+
+    @PutMapping("/info-change/weight")
+    public void weightChange(@RequestBody WeightChangeRequestDto dto) {
+        userService.updateWeight(dto);
+    }
+
+    @PutMapping("/info-change/height")
+    public void heightChange(@RequestBody HeightChangeRequestDto dto) {
+        userService.updateHeight(dto);
     }
 }

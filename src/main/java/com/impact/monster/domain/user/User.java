@@ -72,4 +72,12 @@ public class User {
         this.target = target;
         this.roadmap = roadmap;
     }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
 }
