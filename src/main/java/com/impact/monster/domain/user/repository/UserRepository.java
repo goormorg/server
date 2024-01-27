@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.Map;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -14,11 +14,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select u.password " +
             "from User u " +
-            "where u.email = :email and u.password = :password")
-    String findPasswordByEmailAndPassword(@Param("email") String email, @Param("password") String password);
-
-    @Query("select u.password " +
-            "from User u " +
             "where u.email = :email")
     String findPasswordByEmail(@Param("email") String email);
+
+    @Query("select new map(u.name as name, u.email as email, u.birth as birth, u.fat as fat, u.gender as gender, " +
+            "u.height as height, u.weight as weight, u.phoneNumber as phoneNumber, u.skeletalMuscle as skeletalMuscle, u.target as target) " +
+            "from User u " +
+            "where u.email = :email")
+     Object[] findDetailByEmail(String email);
+
 }
