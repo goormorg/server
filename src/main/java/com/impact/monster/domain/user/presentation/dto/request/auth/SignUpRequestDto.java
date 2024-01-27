@@ -19,7 +19,7 @@ public class SignUpRequestDto {
     private String email;
     private String password;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate birth;
+    private String birth;
     private String phoneNumber;
     private String gender;
     private int weight;
@@ -34,7 +34,7 @@ public class SignUpRequestDto {
                 .name(name)
                 .email(email)
                 .password(encodedPassword)
-                .birth(java.sql.Date.valueOf(birth))
+                .birth(birth)
                 .gender(GenderType.valueOf(gender))
                 .phoneNumber(phoneNumber)
                 .weight(weight)

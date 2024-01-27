@@ -23,7 +23,7 @@ public class User {
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    private Date birth;
+    private String birth;
     @Column(nullable = false)
     private String phoneNumber;
     private int weight;
@@ -40,7 +40,7 @@ public class User {
     private TargetType target; // BULK, LOSEWEIGHT, KEEP
 
     @Builder
-    public User(Long id, String name, String email, String password, Date birth, String phoneNumber, int weight, int height, GenderType gender, int fat, int skeletalMuscle, TargetType target) {
+    public User(Long id, String name, String email, String password, String birth, String phoneNumber, int weight, int height, GenderType gender, int fat, int skeletalMuscle, TargetType target) {
         this.id = id;
         this.name = name;
         this.email = email;
