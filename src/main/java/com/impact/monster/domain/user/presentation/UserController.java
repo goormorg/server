@@ -1,5 +1,6 @@
 package com.impact.monster.domain.user.presentation;
 
+import com.impact.monster.domain.user.presentation.dto.request.bmr.BmrRequestDto;
 import com.impact.monster.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,4 +21,12 @@ public class UserController {
         return result;
     }
 
+    @GetMapping("/bmr")
+    public float getBmr(@RequestParam("weight") int weight,
+                       @RequestParam("height") int height,
+                       @RequestParam("age") int age,
+                        @RequestParam("gender") String gender)  {
+        float result = userService.getUserBmrInfo(weight, height, age, gender);
+        return result;
+    }
 }
