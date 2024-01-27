@@ -1,6 +1,8 @@
 package com.impact.monster.domain.user.presentation;
 
+import com.impact.monster.domain.user.presentation.dto.request.auth.SignInRequestDto;
 import com.impact.monster.domain.user.presentation.dto.request.auth.SignUpRequestDto;
+import com.impact.monster.domain.user.presentation.dto.response.auth.SignInResponseDto;
 import com.impact.monster.domain.user.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,5 +18,11 @@ public class AuthController {
     @PostMapping("/signUp")
     public void signUp(@RequestBody SignUpRequestDto dto) {
         authService.save(dto);
+    }
+
+    @PostMapping("/signIn")
+    public SignInResponseDto signIn(@RequestBody SignInRequestDto dto) {
+        SignInResponseDto result = authService.register(dto);
+        return result;
     }
 }
