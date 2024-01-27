@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +26,7 @@ public class AuthService {
 
     private final Long exprTime = (long) (1000 * 60 * 60);
 
+    @Transactional
     public void save(SignUpRequestDto dto) {
         try {
             String email = dto.getEmail();
@@ -44,6 +46,7 @@ public class AuthService {
         }
     }
 
+    @Transactional
     public SignInResponseDto register(SignInRequestDto dto) throws GlobalException {
         String email = dto.getEmail();
         String password = dto.getPassword();
