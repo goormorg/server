@@ -60,7 +60,7 @@ public class UserService {
     public void updateHeight(HeightChangeRequestDto dto) {
         try {
             User user = userRepository.findByEmail(dto.getEmail());
-            user.setWeight(dto.getHeight());
+            user.setHeight(dto.getHeight());
 
             userRepository.save(user);
         } catch(GlobalException e) {
