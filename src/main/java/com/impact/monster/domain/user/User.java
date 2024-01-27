@@ -1,13 +1,12 @@
 package com.impact.monster.domain.user;
 
+import com.impact.monster.domain.roadmap.Roadmap;
 import com.impact.monster.domain.user.types.gender.GenderType;
 import com.impact.monster.domain.user.types.target.TargetType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.*;
-
-import java.util.Date;
 
 @Entity @Table(name = "users")
 @Getter @NoArgsConstructor(access = AccessLevel.PROTECTED) @ToString
@@ -38,9 +37,12 @@ public class User {
     private int skeletalMuscle; // 골격근량 (단위 : %)
     @Enumerated(EnumType.STRING)
     private TargetType target; // BULK, LOSEWEIGHT, KEEP
+    @JoinColumn(name = "roadmap_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Roadmap roadmapId;
 
     @Builder
-    public User(Long id, String name, String email, String password, String birth, String phoneNumber, int weight, int height, GenderType gender, int fat, int skeletalMuscle, TargetType target) {
+    public User(Long id, String name, String email, String password, String birth, String phoneNumber, int weight, int height, GenderType gender, int fat, int skeletalMuscle, TargetType target, Roadmap roadmapId) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -53,5 +55,6 @@ public class User {
         this.fat = fat;
         this.skeletalMuscle = skeletalMuscle;
         this.target = target;
+        this.roadmapId = roadmapId;
     }
 }
