@@ -7,28 +7,33 @@ import lombok.*;
 
 import java.util.List;
 
-@Entity @Table(name = "roadmap")
-@Getter @ToString
+@Entity
+@Table(name = "roadmap")
+@Getter
+@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Roadmap {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "roadmap_id")
     private Long id;
+
     private String info;
+
     private String detail;
+
     @Enumerated(EnumType.STRING)
     private StatusType status;
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private List<User> userId;
+
+    @OneToMany(mappedBy = "roadmap")
+    private List<User> users;
 
     @Builder
-    public Roadmap(Long id, String info, String detail, StatusType status, List<User> userId) {
+    public Roadmap(Long id, String info, String detail, StatusType status, List<User> users) {
         this.id = id;
         this.info = info;
         this.detail = detail;
         this.status = status;
-        this.userId = userId;
+        this.users = users;
     }
 }

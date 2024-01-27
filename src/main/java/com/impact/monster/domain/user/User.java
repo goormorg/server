@@ -8,41 +8,56 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.*;
 
-@Entity @Table(name = "users")
-@Getter @NoArgsConstructor(access = AccessLevel.PROTECTED) @ToString
+@Entity
+@Table(name = "users")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 public class User {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String name;
+
     @Column(nullable = false)
     private String email;
+
     @Column(nullable = false)
     private String password;
+
     @Column(nullable = false)
     private String birth;
+
     @Column(nullable = false)
     private String phoneNumber;
+
     private int weight;
+
     private int height;
+
     @Enumerated(EnumType.STRING)
     private GenderType gender;
+
     @Max(100)
     @Min(0)
     private int fat; // 체지방률 (단위 : %)
+
     @Max(100)
     @Min(0)
     private int skeletalMuscle; // 골격근량 (단위 : %)
+
     @Enumerated(EnumType.STRING)
     private TargetType target; // BULK, LOSEWEIGHT, KEEP
-    @JoinColumn(name = "roadmap_id")
+
     @ManyToOne(fetch = FetchType.LAZY)
-    private Roadmap roadmapId;
+    @JoinColumn(name = "roadmap_id")
+    private Roadmap roadmap;
 
     @Builder
-    public User(Long id, String name, String email, String password, String birth, String phoneNumber, int weight, int height, GenderType gender, int fat, int skeletalMuscle, TargetType target, Roadmap roadmapId) {
+    public User(Long id, String name, String email, String password, String birth, String phoneNumber, int weight, int height, GenderType gender, int fat, int skeletalMuscle, TargetType target, Roadmap roadmap) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -55,6 +70,6 @@ public class User {
         this.fat = fat;
         this.skeletalMuscle = skeletalMuscle;
         this.target = target;
-        this.roadmapId = roadmapId;
+        this.roadmap = roadmap;
     }
 }
